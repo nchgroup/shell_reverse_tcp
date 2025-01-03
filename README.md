@@ -23,7 +23,7 @@ Generate your payload in x64 quickly and easily without dependencies to perform 
 
 # ToDo
 
-* add language support, example: `-l c`
+* add language support, example: `-lang c`
 
 # Authors
 * [Huerfano](https://www.linkedin.com/in/leonardo-astorga-20b1095a/)
