@@ -32,8 +32,11 @@ go build .
 Generate your payload in x64 quickly and easily without dependencies to perform AV/EDR evasion tests on Windows in amd64, so you can use encoders, ciphers, obfuscators, whatever.
 
 # ToDo
-
 * add language support, example: `-lang c`
+
+# References
+* https://vay3t.medium.com/malware-development-generando-shellcodes-de-metasploit-sin-metasploit-aa120ffcdd92
+* https://github.com/rapid7/metasploit-framework/blob/master/modules/payloads/singles/windows/x64/shell_bind_tcp.rb#L47
 
 # Authors
 * [Huerfano](https://www.linkedin.com/in/leonardo-astorga-20b1095a/)
