@@ -37,6 +37,7 @@ Generate your payload in x64 quickly and easily without dependencies to perform 
 # References
 * https://vay3t.medium.com/malware-development-generando-shellcodes-de-metasploit-sin-metasploit-aa120ffcdd92
 * https://github.com/rapid7/metasploit-framework/blob/master/modules/payloads/singles/windows/x64/shell_bind_tcp.rb#L47
+* https://github.com/vay3t/asm-shell_reverse_tcp
 
 # Authors
 * [Huerfano](https://www.linkedin.com/in/leonardo-astorga-20b1095a/)
