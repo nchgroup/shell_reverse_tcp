@@ -134,10 +134,10 @@ func main() {
 
 	switch format {
 	case "hex":
-		fmt.Println(hex.EncodeToString(buf))
+		fmt.Print(hex.EncodeToString(buf))
 	case "base64":
-		fmt.Println(base64.StdEncoding.EncodeToString(buf))
+		fmt.Print(base64.StdEncoding.EncodeToString(buf))
 	default:
-		fmt.Println(string(buf))
+		fmt.Print(string(buf))
 	}
 }
