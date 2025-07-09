@@ -7,7 +7,7 @@ msfvenom windows/x64/shell_reverse_tcp payload generator without dependencies
 $ ./shell_reverse_tcp -h
 Usage of ./shell_reverse_tcp:
   -f string
-        Formats: {raw, hex, base64, c, rust, csharp, psh, vba} (default "raw")
+        Formats: {raw, hex, base64, c, python, rust, csharp, psh, vba} (default "raw")
   -l string
         LHOST IP address (default "127.0.0.1")
   -p int
